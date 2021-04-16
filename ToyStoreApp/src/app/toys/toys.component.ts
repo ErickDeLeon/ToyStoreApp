@@ -21,9 +21,8 @@ export class ToysComponent implements OnInit {
   }
 
   populateForm(selectedRecord: Toys){
-    console.log(selectedRecord);
     this.service.formData = Object.assign({}, selectedRecord);
-    console.log(Object.assign({}, selectedRecord));
+    /*console.log(Object.assign({}, selectedRecord));*/
   }
 
   onDelete(id:number){

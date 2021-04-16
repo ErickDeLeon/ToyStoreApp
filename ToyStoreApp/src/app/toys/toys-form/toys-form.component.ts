@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Toys } from 'src/app/shared/toys.model';
 import { ToysService } from 'src/app/shared/toys.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-toys-form',
@@ -12,16 +13,38 @@ import { ToysService } from 'src/app/shared/toys.service';
 })
 export class ToysFormComponent implements OnInit {
 
-  constructor(public service: ToysService,
-    private toastr:ToastrService
+  form = new FormGroup({
+    restriccionEdad: new FormControl('', Validators.required)
+  }) // Instantiating our form
 
-    ) { }
+  constructor(public service: ToysService,
+    private toastr:ToastrService,
+    ) { 
+
+    }
 
   ngOnInit(): void {
 
   }
 
+
   onSubmit(form:NgForm){
+
+    var jso = form.value;
+    
+    var result = Object.keys(jso).map(e => jso[e]);
+
+    if(result[2] < 0 || result[2] > 100)
+    {
+      Swal.fire('La edad no puede ser ' + result[2] + ' años')
+      return
+    } 
+
+    if(result[4] < 1 || result[4] > 1000)
+    {
+      Swal.fire('El precio tiene que ser entre $1 y $1,000')
+      return
+    } 
 
     if(this.service.formData.id == 0){
       this.insertRecord(form);
@@ -66,25 +89,8 @@ export class ToysFormComponent implements OnInit {
 
     if(charCode > 31 && (charCode < 48 || charCode > 57))
     {
-      console.log('El codigo es ' + charCode);
       return false;
     }
     return true;
   }
-
-  onSearchChange(evento: any) : boolean{
-    
-    const input = evento.target.value;
-    var myFloat = parseFloat(input);
-
-    if( myFloat < 1 ){
-      console.log('Menor de 1')
-      return false;
-    }
-
-    console.log(input)
-
-    return true;
-  }
-
 }
