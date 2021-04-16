@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#"> Juguetería </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="py-5">
+    <div class="col-md-12">
+        <div class="row padd2">
+            <div class="col-md-4">
+                <app-toys-form></app-toys-form>
+            </div>
+            <div class="table-responsive col-md-8">
+                <table class="table aling-items-center table-flush">
+                    <thead>
+                        <tr>
+                            <th class="styleth"> Nombre </th>
+                            <th class="styleth"> Descripción </th>
+                            <th class="styleth"> Edad </th>
+                            <th class="styleth"> Compañia </th>
+                            <th class="styleth"> Precio </th>
+                            <th> </th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor = "let pd of service.list">
+                            <td>{{pd.nombre}}</td>
+                            <td>{{pd.descripcion}}</td>
+                            <td>{{pd.restriccionEdad}}</td>
+                            <td>{{pd.compania}}</td>
+                            <td>{{pd.precio}}</td>
+                            <td>
+                                <i class="fas fa-pen fa-lg text-info" (click)="populateForm(pd)"></i>
+                            </td>
+                            <td>
+                                <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.id)"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>   
+    </div>
+  </section>
+

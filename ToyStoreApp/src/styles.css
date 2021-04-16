@@ -1,0 +1,87 @@
+/* You can add global styles to this file, and also import other style files */
+.form-group label {
+    color: grey;
+}
+.form-group input{
+    font-weight: 500;
+}
+.form-group input::placeholder{
+    color:#c0bdbd;
+    font-weight: 300;
+}
+thead th{
+    font-weight: 400;
+}
+table tbody tr:hover{
+    background-color: #fffbf2;
+    cursor: pointer;
+}
+
+/*Para datos invalidos*/
+input.invalid{
+    border-color: red;
+}
+
+.padd{
+ padding-top: 15px;
+}
+
+.padd2{
+    padding-top: 30px;
+}
+
+.padd-bott{
+    padding-bottom: 15px;
+}
+.padd-rig{
+    padding-left: 30px;
+}
+
+.clr{
+    color:white;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+thead tr  { 
+    background:#9fabb877;
+    font-size:16px;
+}
+
+label{
+    font-weight: bold;
+}
+
+table th{
+ font-weight: bold;
+ text-align: center;
+}
+
+table td{
+    text-align: center;
+}
+
+
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    border: 1px solid rgb(178,195,217);
+    border-radius: .375rem;
+    background-color: #9fabb877;
+    background-clip: border-box;
+}
+
+.header {
+    color: #36A0FF;
+    font-size: 27px;
+    padding: 10px;
+}
+
+.bigicon {
+    font-size: 35px;
+    color: #36A0FF;
+}
