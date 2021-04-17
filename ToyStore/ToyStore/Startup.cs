@@ -12,6 +12,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ToyStore.Models;
+using ToyStore.Repositories;
+using ToyStore.Repositories.Implements;
+using ToyStore.Services;
+using ToyStore.Services.Implements;
 
 namespace ToyStore
 {
@@ -38,6 +42,12 @@ namespace ToyStore
             options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
 
             services.AddCors();
+
+            //Repositories
+            services.AddScoped<IToyRepository, ToyRepository>();
+
+            //Services
+            services.AddScoped<IToyService, ToyService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
