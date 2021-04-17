@@ -43,9 +43,3 @@ VISUAL STUDIO 2019
    donde se guardarán los registros.
 
 6. Ejecutar el proyecto IIExpress y con esto tendriamos el back-end
-
-////////////// PD
-En el controlador de Toys esta comentada la clase donde se implementa el Patron IRepository.
-La comenté ya que el context marca error al momento de actualizar un registro diciendo que el id esta repetido o simplemnte no actualiza.
-y al momento de eliminar, el registro no se elimina del context es por ello que comenté y dejé que directamente se hiciera las consultas
-desde el controlador. 
