@@ -16,9 +16,9 @@ namespace ToyStore.Services.Implements
             this.genericRepository = genericRepository;
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(int id, TEntity entity)
         {
-            await genericRepository.Delete(id);
+            await genericRepository.Delete(id, entity);
         }
 
         public async Task<List<TEntity>> GetAll()

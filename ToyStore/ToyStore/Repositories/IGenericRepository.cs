@@ -12,6 +12,6 @@ namespace ToyStore.Repositories
         Task<TEntity> GetById(int id);
         Task<TEntity> Insert(TEntity entity);
         Task<TEntity> Update(int id, TEntity entity);
-        Task Delete(int id);
+        Task Delete(int id, TEntity entity);
     }
 }

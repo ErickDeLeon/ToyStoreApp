@@ -10,22 +10,19 @@ namespace ToyStore.Repositories.Implements
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         private readonly DataContext dataContext;
-
+        private DbSet<TEntity> Table;
         public GenericRepository(DataContext dataContext)
         {
             this.dataContext = dataContext;
+            Table = dataContext.Set<TEntity>();
         }
         public int Count()
         {
             return dataContext.Set<TEntity>().ToList().Count();
         }
 
-        public async Task Delete(int id)
-        {
-            var entity = await GetById(id);
-            if (entity == null)
-                throw new Exception("No existe");
-
+        public async Task Delete(int id, TEntity entity)
+        {     
             dataContext.Set<TEntity>().Remove(entity);
             await dataContext.SaveChangesAsync();
         }
@@ -50,12 +47,19 @@ namespace ToyStore.Repositories.Implements
 
         public async Task<TEntity> Update(int id, TEntity entity)
         {
-            dataContext.Update<TEntity>(entity);
-            dataContext.Entry(entity).CurrentValues.SetValues(entity);
-            dataContext.Entry<TEntity>(entity).State = EntityState.Modified;
-            //await dataContext.Set<TEntity>().AddOrUpdate(entity);
-            await dataContext.SaveChangesAsync();
-            return entity;
+            try
+            {
+                dataContext.Entry<TEntity>(entity).State = EntityState.Modified;
+                await dataContext.SaveChangesAsync();
+                return entity;
+            }
+            catch (Exception e)
+            {
+                string mensaje = e.Message;
+                return entity;
+            }
+
+
         }
     }
 }
